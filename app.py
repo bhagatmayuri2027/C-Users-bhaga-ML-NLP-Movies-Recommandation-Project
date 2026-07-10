@@ -1,11 +1,12 @@
 import pandas as pd
 import streamlit as st
 import pickle
+import gzip
 
 st.title("Movie Recommender System")
 df = pd.read_csv('cleaned_data.csv')
-with open("similarity.pkl", "rb") as file:
-    similarities = pickle.load(file)
+with gzip.open("similarity.pkl.gz", "rb") as f:
+    similarity = pickle.load(f)
 
 movies = df['title'].tolist()
 
